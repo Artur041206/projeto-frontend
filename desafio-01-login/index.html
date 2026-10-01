@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Entrar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js" defer></script>
+  </head>
+  <body>
+    <main class="container" id="container" data-mode="login">
+      <section class="form-box form-box--login" id="login-section" aria-labelledby="login-title">
+        <form id="login-form" novalidate>
+          <h1 class="form-title" id="login-title">Entrar</h1>
+
+          <div class="social">
+            <button type="button" class="social__btn" aria-label="Entrar com Google">G</button>
+            <button type="button" class="social__btn" aria-label="Entrar com Facebook">f</button>
+            <button type="button" class="social__btn" aria-label="Entrar com LinkedIn">in</button>
+          </div>
+          <p class="form-subtitle">ou use seu e-mail e senha</p>
+
+          <p class="form-message" role="status" hidden></p>
+
+          <div class="field">
+            <label for="login-email">E-mail</label>
+            <input
+              id="login-email"
+              name="email"
+              type="email"
+              placeholder="seuemail@exemplo.com"
+              autocomplete="email"
+              aria-describedby="login-email-error"
+            />
+            <p class="field__error" id="login-email-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="login-password">Senha</label>
+            <div class="field__password">
+              <input
+                id="login-password"
+                name="password"
+                type="password"
+                placeholder="Mínimo de 8 caracteres"
+                autocomplete="current-password"
+                aria-describedby="login-password-error"
+              />
+              <button type="button" class="toggle-password" aria-controls="login-password">
+                Mostrar
+              </button>
+            </div>
+            <p class="field__error" id="login-password-error"></p>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Entrar</button>
+
+          <a href="#" class="forgot">Esqueceu sua senha?</a>
+
+          <p class="switch">
+            Ainda não tem conta?
+            <button type="button" class="link" data-mode-target="register">Criar conta</button>
+          </p>
+        </form>
+      </section>
+
+      <section
+        class="form-box form-box--register"
+        id="register-section"
+        aria-labelledby="register-title"
+      >
+        <form id="register-form" novalidate>
+          <h1 class="form-title" id="register-title">Criar conta</h1>
+
+          <div class="social">
+            <button type="button" class="social__btn" aria-label="Cadastrar com Google">G</button>
+            <button type="button" class="social__btn" aria-label="Cadastrar com Facebook">f</button>
+            <button type="button" class="social__btn" aria-label="Cadastrar com LinkedIn">
+              in
+            </button>
+          </div>
+          <p class="form-subtitle">ou use seu e-mail para se cadastrar</p>
+
+          <p class="form-message" role="status" hidden></p>
+
+          <div class="field">
+            <label for="register-name">Nome</label>
+            <input
+              id="register-name"
+              name="name"
+              type="text"
+              placeholder="Seu nome"
+              autocomplete="name"
+              aria-describedby="register-name-error"
+            />
+            <p class="field__error" id="register-name-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="register-email">E-mail</label>
+            <input
+              id="register-email"
+              name="email"
+              type="email"
+              placeholder="seuemail@exemplo.com"
+              autocomplete="email"
+              aria-describedby="register-email-error"
+            />
+            <p class="field__error" id="register-email-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="register-password">Senha</label>
+            <div class="field__password">
+              <input
+                id="register-password"
+                name="password"
+                type="password"
+                placeholder="Mínimo de 8 caracteres"
+                autocomplete="new-password"
+                aria-describedby="register-password-error"
+              />
+              <button type="button" class="toggle-password" aria-controls="register-password">
+                Mostrar
+              </button>
+            </div>
+            <p class="field__error" id="register-password-error"></p>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Criar conta</button>
+
+          <p class="switch">
+            Já tem conta?
+            <button type="button" class="link" data-mode-target="login">Entrar</button>
+          </p>
+        </form>
+      </section>
+
+      <aside class="panel">
+        <div class="panel__content" data-panel="login">
+          <h2 class="panel__title">Olá, amigo!</h2>
+          <p class="panel__text">
+            Cadastre-se com seus dados pessoais para usar todos os recursos do site.
+          </p>
+          <button type="button" class="btn btn--outline" data-mode-target="register">
+            Criar conta
+          </button>
+        </div>
+
+        <div class="panel__content" data-panel="register">
+          <h2 class="panel__title">Bem-vindo de volta!</h2>
+          <p class="panel__text">Entre com seus dados para continuar de onde parou.</p>
+          <button type="button" class="btn btn--outline" data-mode-target="login">Entrar</button>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>

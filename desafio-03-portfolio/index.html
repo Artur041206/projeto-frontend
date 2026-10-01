@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artur Vinicius — Desenvolvedor Front-end</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <script>
+      if (localStorage.getItem('tema') === 'dark') {
+        document.body.classList.add('dark');
+      }
+    </script>
+
+    <header class="site-header" id="topo">
+      <div class="container header-inner">
+        <a href="#topo" class="logo">Artur<span class="logo-dot">.</span>dev</a>
+
+        <nav class="main-nav">
+          <a href="#sobre">Sobre</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#habilidades">Habilidades</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <button
+          id="themeToggle"
+          class="theme-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="Alternar para tema escuro"
+        >
+          <svg
+            class="icon-sun"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <circle cx="12" cy="12" r="4"></circle>
+            <path
+              d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+            ></path></svg
+          ><svg
+            class="icon-moon"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M21 12.6A9 9 0 1 1 11.4 3a7 7 0 0 0 9.6 9.6z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="profile-section" id="sobre">
+        <div class="container profile-inner">
+          <img src="img/profile.jpg" alt="Foto de perfil de Artur Vinicius" class="avatar" />
+          <p class="eyebrow">Olá, eu sou</p>
+          <h1 class="profile-name">Artur Vinicius</h1>
+          <p class="profile-role">Desenvolvedor Front-end</p>
+          <p class="profile-bio">
+            Estou em formação em desenvolvimento front-end, construindo projetos com HTML5, CSS3
+            Bootstrap 5 e JavaScript puro. Gosto de transformar interfaces em experiências
+            consistentes, responsivas e acessíveis — do primeiro rascunho ao último detalhe.
+          </p>
+          <div class="profile-links">
+            <a href="mailto:arturvivinicius11@gmail.com" class="btn-primary">Entrar em contato</a>
+            <a href="#projetos" class="btn-ghost">Ver projetos</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects-section" id="projetos">
+        <div class="container">
+          <p class="eyebrow">Portfólio</p>
+          <h2 class="section-title">Projetos</h2>
+          <p class="section-sub">
+            Desafios práticos de front-end, do fundamento à composição final.
+          </p>
+
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="mockup mockup-login" aria-hidden="true">
+                <div class="mockup-bar"><span></span><span></span><span></span></div>
+                <div class="mockup-body">
+                  <div class="mockup-panel"></div>
+                  <div class="mockup-form">
+                    <div class="mockup-line short"></div>
+                    <div class="mockup-field"></div>
+                    <div class="mockup-field"></div>
+                    <div class="mockup-btn"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-info">
+                <span class="project-tag">Desafio 01</span>
+                <h3 class="project-title">Tela de Login &amp; Cadastro</h3>
+                <p class="project-desc">
+                  Layout split-screen com alternância entre login e cadastro, validação de campos em
+                  tempo real via DOM e feedback visual dinâmico.
+                </p>
+                <ul class="project-stack">
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li>JavaScript</li>
+                </ul>
+                <div class="project-links">
+                  <a href="../Tela de Login/index.html" class="link-arrow">Ver projeto →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="mockup mockup-resto" aria-hidden="true">
+                <div class="mockup-bar"><span></span><span></span><span></span></div>
+                <div class="mockup-body">
+                  <div class="mockup-hero"></div>
+                  <div class="mockup-grid">
+                    <div class="mockup-card"></div>
+                    <div class="mockup-card"></div>
+                    <div class="mockup-card"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-info">
+                <span class="project-tag">Desafio 02</span>
+                <h3 class="project-title">Brasa Mineira — Cozinha e Brasa</h3>
+                <p class="project-desc">
+                  Landing page de restaurante com Bootstrap 5, navbar responsiva, grid de cardápio
+                  filtrável por categoria e identidade visual autoral.
+                </p>
+                <ul class="project-stack">
+                  <li>HTML5</li>
+                  <li>Bootstrap 5</li>
+                  <li>JavaScript</li>
+                </ul>
+                <div class="project-links">
+                  <a href="../Cardápio Digital/index.html" class="link-arrow">Ver projeto →</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="skills-section" id="habilidades">
+        <div class="container">
+          <p class="eyebrow">Ferramentas</p>
+          <h2 class="section-title">Habilidades</h2>
+          <div class="skills-list">
+            <span class="skill-badge">HTML5</span>
+            <span class="skill-badge">CSS3</span>
+            <span class="skill-badge">Bootstrap 5</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">Git &amp; GitHub</span>
+            <span class="skill-badge">Design Responsivo</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contato">
+      <div class="container footer-inner">
+        <div>
+          <h2 class="footer-title">Vamos conversar?</h2>
+          <p class="footer-text">Aberto a oportunidades e projetos. É só chamar.</p>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:arturvivinicius11@gmail.com">E-mail</a>
+          <a href="https://github.com/Artur041206" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/arturvini" target="_blank" rel="noopener"
+            >LinkedIn</a
+          >
+        </div>
+      </div>
+      <p class="footer-copy">&copy; 2026 Artur Vinicius. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

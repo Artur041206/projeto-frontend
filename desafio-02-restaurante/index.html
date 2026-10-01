@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BRASA MINEIRA — Cozinha a Brasa</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="#topo">BRASA MINEIRA<span class="brand-dot">.</span></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          aria-label="Abrir menu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+          <ul class="navbar-nav align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a class="nav-link" href="#cardapio">Cardápio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+            <li class="nav-item">
+              <a class="nav-link btn-reserva" href="#contato">Reservar mesa</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero" id="topo">
+      <div class="hero-glow"></div>
+      <div class="container hero-content">
+        <p class="eyebrow">Cozinha de fogo vivo &mdash; Uberlândia</p>
+        <h1 class="hero-title">Fogo.<br />Fumaça.<br />Sabor.</h1>
+        <p class="hero-sub">
+          Tudo que sai da nossa cozinha passa pela brasa. Carnes, legumes e pães, defumados e
+          grelhados no ponto certo, todos os dias.
+        </p>
+        <a href="#cardapio" class="btn-brasa">Ver cardápio</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="menu-section" id="cardapio">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">O que servimos</p>
+            <h2 class="section-title">Nosso cardápio</h2>
+          </div>
+
+          <div class="filter-tabs" role="tablist" aria-label="Filtrar cardápio por categoria">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="brasa">Na brasa</button>
+            <button class="filter-btn" data-filter="acompanhamento">Acompanhamentos</button>
+            <button class="filter-btn" data-filter="sobremesa">Sobremesas</button>
+            <button class="filter-btn" data-filter="bebida">Bebidas</button>
+          </div>
+
+          <div class="row g-4" id="menuGrid">
+            <div class="col-12 col-sm-6 col-lg-4 menu-col" data-category="brasa">
+              <article class="ticket-card">
+                <span class="ticket-tag">Na brasa</span>
+                <h3 class="ticket-name">Picanha no bafo</h3>
+                <p class="ticket-desc">Maturada 21 dias, sal grosso e farofa de alho torrado.</p>
+                <span class="ticket-price">R$ 89</span>
+              </article>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 menu-col" data-category="brasa">
+              <article class="ticket-card">
+                <span class="ticket-tag">Na brasa</span>
+                <h3 class="ticket-name">Costela 12 horas</h3>
+                <p class="ticket-desc">
+                  Defumada lentamente, molho de brasa e pão de alho artesanal.
+                </p>
+                <span class="ticket-price">R$ 76</span>
+              </article>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 menu-col" data-category="brasa">
+              <article class="ticket-card">
+                <span class="ticket-tag">Na brasa</span>
+                <h3 class="ticket-name">Polvo grelhado</h3>
+                <p class="ticket-desc">Purê de mandioquinha defumado e azeite de ervas.</p>
+                <span class="ticket-price">R$ 68</span>
+              </article>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 menu-col" data-category="acompanhamento">
+              <article class="ticket-card">
+                <span class="ticket-tag">Acompanhamento</span>
+                <h3 class="ticket-name">Legumes na brasa</h3>
+                <p class="ticket-desc">Seleção do dia, azeite defumado e flor de sal.</p>
+                <span class="ticket-price">R$ 32</span>
+              </article>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 menu-col" data-category="acompanhamento">
+              <article class="ticket-card">
+                <span class="ticket-tag">Acompanhamento</span>
+                <h3 class="ticket-name">Farofa de banana</h3>
+                <p class="ticket-desc">Manteiga de garrafa e banana caramelizada na brasa.</p>
+                <span class="ticket-price">R$ 24</span>
+              </article>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 menu-col" data-category="sobremesa">
+              <article class="ticket-card">
+                <span class="ticket-tag">Sobremesa</span>
+                <h3 class="ticket-name">Banana assada na brasa</h3>
+                <p class="ticket-desc">Canela, doce de leite e sorvete de creme.</p>
+                <span class="ticket-price">R$ 28</span>
+              </article>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 menu-col" data-category="sobremesa">
+              <article class="ticket-card">
+                <span class="ticket-tag">Sobremesa</span>
+                <h3 class="ticket-name">Fumaça de chocolate</h3>
+                <p class="ticket-desc">Mousse defumado com raspas de cacau torrado.</p>
+                <span class="ticket-price">R$ 26</span>
+              </article>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 menu-col" data-category="bebida">
+              <article class="ticket-card">
+                <span class="ticket-tag">Bebida</span>
+                <h3 class="ticket-name">Old fashioned defumado</h3>
+                <p class="ticket-desc">Bourbon, angostura e fumaça de madeira de carvalho.</p>
+                <span class="ticket-price">R$ 42</span>
+              </article>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 menu-col" data-category="bebida">
+              <article class="ticket-card">
+                <span class="ticket-tag">Bebida</span>
+                <h3 class="ticket-name">Limonada de carvão</h3>
+                <p class="ticket-desc">Limão siciliano, carvão ativado e hortelã.</p>
+                <span class="ticket-price">R$ 22</span>
+              </article>
+            </div>
+          </div>
+
+          <p class="empty-state d-none" id="emptyState">
+            Nenhum item nessa categoria hoje. Volte para "Todos".
+          </p>
+        </div>
+      </section>
+
+      <section class="about-section" id="sobre">
+        <div class="container">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+              <p class="eyebrow">Desde 2016</p>
+              <h2 class="section-title">A brasa é a nossa técnica, não um efeito</h2>
+              <p class="about-text">
+                Trabalhamos só com lenha e carvão de origem certificada. Cada prato passa pela mesma
+                parrilla, no mesmo ponto de fumaça, todos os dias — é isso que dá o sabor que não
+                sai de uma chapa comum.
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <div class="stats-row">
+                <div class="stat">
+                  <span class="stat-num">8+</span>
+                  <span class="stat-label">anos de brasa</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-num">12h</span>
+                  <span class="stat-label">de defumação lenta</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-num">100%</span>
+                  <span class="stat-label">lenha certificada</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contato">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <h3 class="footer-brand">BRASA MINEIRA<span class="brand-dot">.</span></h3>
+            <p class="footer-text">
+              Av. Belarmino Cotta Pacheco, 214 — Santa Mônica, Uberlândia/MG
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h4 class="footer-heading">Horário</h4>
+            <p class="footer-text">Terça a domingo<br />18h às 00h</p>
+          </div>
+          <div class="col-md-4">
+            <h4 class="footer-heading">Contato</h4>
+            <p class="footer-text">
+              (34) 99999-0000<br />brasamineira123@gmail.com<br />@brasa_mineira
+            </p>
+          </div>
+        </div>
+        <hr class="footer-rule" />
+        <p class="footer-copy">
+          &copy; 2026 Brasa Mineira Cozinha e Brasa. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

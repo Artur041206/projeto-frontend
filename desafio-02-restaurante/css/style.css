@@ -1,0 +1,375 @@
+:root {
+  --charcoal: #17130f;
+  --charcoal-2: #211a14;
+  --ember: #ff6a39;
+  --ember-dim: #c94f24;
+  --ash: #a89a89;
+  --cream: #f3e9d8;
+  --smoke: #392c22;
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--charcoal);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+::selection {
+  background: var(--ember);
+  color: var(--charcoal);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  color: var(--cream);
+  line-height: 1.15;
+}
+
+#mainNav {
+  background: rgba(23, 19, 15, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 106, 57, 0.15);
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--cream);
+}
+
+.brand-dot {
+  color: var(--ember);
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ash);
+  padding: 0.5rem 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--cream);
+}
+
+.btn-reserva {
+  border: 1px solid var(--ember);
+  border-radius: 2px;
+  color: var(--ember);
+  margin-left: 0.5rem;
+}
+
+.btn-reserva:hover {
+  background: var(--ember);
+  color: var(--charcoal);
+}
+
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 20% 100%, #2c1b10 0%, var(--charcoal) 55%);
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 85% 30%, rgba(255, 106, 57, 0.18), transparent 45%),
+    radial-gradient(circle at 60% 90%, rgba(255, 106, 57, 0.12), transparent 40%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 6rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 0.95;
+  color: var(--cream);
+  margin-bottom: 1.5rem;
+}
+
+.hero-sub {
+  max-width: 32rem;
+  color: var(--ash);
+  font-size: 1.05rem;
+  margin-bottom: 2.25rem;
+}
+
+.btn-brasa {
+  display: inline-block;
+  background: var(--ember);
+  color: var(--charcoal);
+  font-weight: 600;
+  padding: 0.9rem 2rem;
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.btn-brasa:hover {
+  background: #ff7d51;
+  transform: translateY(-2px);
+  color: var(--charcoal);
+}
+
+.menu-section {
+  padding: 6rem 0;
+  background: var(--charcoal);
+}
+
+.section-head {
+  margin-bottom: 2.5rem;
+}
+
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 3rem;
+}
+
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  background: transparent;
+  color: var(--ash);
+  border: 1px solid var(--smoke);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--ember);
+  color: var(--cream);
+}
+
+.filter-btn.active {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--charcoal);
+  font-weight: 700;
+}
+
+.ticket-card {
+  position: relative;
+  background: var(--charcoal-2);
+  border: 1px solid var(--smoke);
+  border-radius: 6px;
+  padding: 2rem 1.5rem 1.5rem;
+  height: 100%;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.ticket-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background-image: radial-gradient(circle at 10px 0, var(--charcoal) 7px, transparent 7px);
+  background-size: 20px 12px;
+  background-repeat: repeat-x;
+}
+
+.menu-col:hover .ticket-card {
+  border-color: var(--ember);
+  transform: translateY(-4px);
+}
+
+.ticket-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ember);
+  border: 1px solid var(--ember-dim);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.ticket-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+.ticket-desc {
+  color: var(--ash);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  min-height: 2.7em;
+}
+
+.ticket-price {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--cream);
+  border-top: 1px dashed var(--smoke);
+  padding-top: 0.9rem;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--ash);
+  font-family: var(--font-mono);
+  padding: 2rem 0;
+}
+
+.about-section {
+  padding: 5rem 0 6rem;
+  background: var(--charcoal-2);
+  border-top: 1px solid var(--smoke);
+  border-bottom: 1px solid var(--smoke);
+}
+
+.about-text {
+  color: var(--ash);
+  font-size: 1.05rem;
+  max-width: 34rem;
+}
+
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.75rem;
+  color: var(--ember);
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ash);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.5rem;
+}
+
+.footer {
+  background: var(--charcoal);
+  padding: 4rem 0 2rem;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+
+.footer-heading {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ember);
+  margin-bottom: 0.75rem;
+}
+
+.footer-text {
+  color: var(--ash);
+  font-size: 0.9rem;
+}
+
+.footer-rule {
+  border-color: var(--smoke);
+  margin: 2.5rem 0 1.5rem;
+}
+
+.footer-copy {
+  color: var(--ash);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-col:hover .ticket-card,
+  .btn-brasa:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #navMenu {
+    background: var(--charcoal-2);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-top: 0.75rem;
+  }
+  .btn-reserva {
+    display: inline-block;
+    margin-top: 0.5rem;
+    margin-left: 0;
+  }
+}

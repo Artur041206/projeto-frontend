@@ -1,4 +1,10 @@
 const MIN_PASSWORD_LENGTH = 8;
+const TOKEN_KEY = 'accessToken';
+const DASHBOARD_PAGE = 'dashboard.html';
+
+if (localStorage.getItem(TOKEN_KEY)) {
+  window.location.replace(DASHBOARD_PAGE);
+}
 
 const container = document.getElementById('container');
 const forms = {
@@ -87,9 +93,10 @@ Object.values(forms).forEach((form) => {
   });
 });
 
-function showMessage(form, text) {
+function showMessage(form, text, type = 'success') {
   const box = form.querySelector('.form-message');
   box.textContent = text;
+  box.dataset.type = type;
   box.hidden = false;
 }
 
@@ -99,7 +106,55 @@ function hideMessage(form) {
   box.textContent = '';
 }
 
-function setMode(mode, { focus = false } = {}) {
+function setLoading(form, isLoading) {
+  const button = form.querySelector('[type="submit"]');
+  const label = button.querySelector('.btn__label');
+
+  if (!button.dataset.idleLabel) button.dataset.idleLabel = label.textContent;
+
+  button.disabled = isLoading;
+  button.classList.toggle('is-loading', isLoading);
+  button.setAttribute('aria-busy', String(isLoading));
+  label.textContent = isLoading ? button.dataset.loadingLabel : button.dataset.idleLabel;
+  form.dataset.submitting = String(isLoading);
+}
+
+function isSubmitting(form) {
+  return form.dataset.submitting === 'true';
+}
+
+function applyApiErrors(form, errors) {
+  const leftovers = [];
+  let firstInput = null;
+
+  Object.entries(errors).forEach(([key, messages]) => {
+    const message = Array.isArray(messages) ? messages[0] : String(messages);
+    const input = form.elements.namedItem(key);
+
+    if (input instanceof HTMLInputElement) {
+      input.dataset.touched = 'true';
+      setFieldState(input, message);
+      if (!firstInput) firstInput = input;
+    } else {
+      leftovers.push(message);
+    }
+  });
+
+  if (leftovers.length) showMessage(form, leftovers.join(' '), 'error');
+  if (!firstInput && !leftovers.length) {
+    showMessage(form, 'Confira os dados e tente novamente.', 'error');
+  }
+  firstInput?.focus();
+}
+
+function describeError(error) {
+  if (error.status === 0) {
+    return 'Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.';
+  }
+  return 'Algo deu errado do nosso lado. Tente novamente em instantes.';
+}
+
+function setMode(mode, { focusSelector } = {}) {
   container.dataset.mode = mode;
 
   Object.entries(sections).forEach(([key, section]) => {
@@ -112,15 +167,15 @@ function setMode(mode, { focus = false } = {}) {
   document.title = mode === 'login' ? 'Entrar' : 'Criar conta';
   hideMessage(forms[mode]);
 
-  if (focus) {
-    forms[mode].querySelector('input')?.focus({ preventScroll: true });
+  if (focusSelector) {
+    forms[mode].querySelector(focusSelector)?.focus({ preventScroll: true });
   }
 }
 
 document.addEventListener('click', (event) => {
   const trigger = event.target.closest('[data-mode-target]');
   if (!trigger) return;
-  setMode(trigger.dataset.modeTarget, { focus: true });
+  setMode(trigger.dataset.modeTarget, { focusSelector: 'input' });
 });
 
 document.querySelectorAll('.toggle-password').forEach((button) => {
@@ -132,22 +187,72 @@ document.querySelectorAll('.toggle-password').forEach((button) => {
   });
 });
 
-forms.login.addEventListener('submit', (event) => {
+forms.login.addEventListener('submit', async (event) => {
   event.preventDefault();
-  hideMessage(forms.login);
-  if (!validateForm(forms.login)) return;
+  const form = forms.login;
 
-  showMessage(forms.login, 'Tudo certo! Dados válidos para entrar.');
+  if (isSubmitting(form)) return;
+  hideMessage(form);
+  if (!validateForm(form)) return;
+
+  const email = form.elements.email.value.trim();
+  const password = form.elements.password.value;
+
+  setLoading(form, true);
+
+  try {
+    const data = await simularApi('POST', '/auth/login', { email, password });
+    localStorage.setItem(TOKEN_KEY, data.accessToken);
+    window.location.assign(DASHBOARD_PAGE);
+  } catch (error) {
+    setLoading(form, false);
+
+    if (error.status === 401) {
+      showMessage(form, 'E-mail ou senha incorretos.', 'error');
+    } else if (error.status === 400) {
+      applyApiErrors(form, error.errors);
+    } else {
+      showMessage(form, describeError(error), 'error');
+    }
+  }
 });
 
-forms.register.addEventListener('submit', (event) => {
+forms.register.addEventListener('submit', async (event) => {
   event.preventDefault();
-  hideMessage(forms.register);
-  if (!validateForm(forms.register)) return;
+  const form = forms.register;
 
-  forms.register.reset();
-  clearFieldStates(forms.register);
-  showMessage(forms.register, 'Conta criada com sucesso!');
+  if (isSubmitting(form)) return;
+  hideMessage(form);
+  if (!validateForm(form)) return;
+
+  const name = form.elements.name.value.trim();
+  const email = form.elements.email.value.trim();
+  const password = form.elements.password.value;
+
+  setLoading(form, true);
+
+  try {
+    await simularApi('POST', '/auth/register', { name, email, password });
+
+    form.reset();
+    clearFieldStates(form);
+
+    forms.login.elements.email.value = email;
+    setMode('login', { focusSelector: 'input[name="password"]' });
+    showMessage(forms.login, 'Conta criada! Agora entre com seu e-mail e senha.');
+  } catch (error) {
+    if (error.status === 400) {
+      applyApiErrors(form, error.errors);
+    } else if (error.status === 409) {
+      const emailInput = form.elements.email;
+      setFieldState(emailInput, 'Já existe uma conta com este e-mail.');
+      emailInput.focus();
+    } else {
+      showMessage(form, describeError(error), 'error');
+    }
+  } finally {
+    setLoading(form, false);
+  }
 });
 
 setMode('login');

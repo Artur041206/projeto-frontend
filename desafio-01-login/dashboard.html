@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Minha conta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="js/simulacao.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
+  </head>
+  <body>
+    <main class="dashboard">
+      <div class="skeleton" id="view-loading" aria-busy="true">
+        <span class="sr-only">Carregando seus dados…</span>
+        <span class="skeleton__line skeleton__line--title"></span>
+        <span class="skeleton__line"></span>
+        <span class="skeleton__line skeleton__line--short"></span>
+        <span class="skeleton__line skeleton__line--button"></span>
+      </div>
+
+      <div id="view-error" role="alert" hidden>
+        <h1 class="form-title">Não foi possível carregar sua conta</h1>
+        <p class="dashboard__text" id="error-text"></p>
+        <button type="button" class="btn btn--primary" id="retry-button">Tentar novamente</button>
+      </div>
+
+      <div id="view-content" hidden>
+        <h1 class="form-title">Olá, <span id="user-name"></span>!</h1>
+        <p class="dashboard__text">Você está conectado como <strong id="user-email"></strong>.</p>
+        <button type="button" class="btn btn--primary" id="logout-button">Sair</button>
+      </div>
+    </main>
+  </body>
+</html>

@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/simulacao.js" defer></script>
     <script src="js/script.js" defer></script>
   </head>
   <body>
@@ -26,7 +27,7 @@
           </div>
           <p class="form-subtitle">ou use seu e-mail e senha</p>
 
-          <p class="form-message" role="status" hidden></p>
+          <p class="form-message" role="alert" hidden></p>
 
           <div class="field">
             <label for="login-email">E-mail</label>
@@ -59,7 +60,10 @@
             <p class="field__error" id="login-password-error"></p>
           </div>
 
-          <button type="submit" class="btn btn--primary">Entrar</button>
+          <button type="submit" class="btn btn--primary" data-loading-label="Entrando…">
+            <span class="btn__spinner" aria-hidden="true"></span>
+            <span class="btn__label">Entrar</span>
+          </button>
 
           <a href="#" class="forgot">Esqueceu sua senha?</a>
 
@@ -87,7 +91,7 @@
           </div>
           <p class="form-subtitle">ou use seu e-mail para se cadastrar</p>
 
-          <p class="form-message" role="status" hidden></p>
+          <p class="form-message" role="alert" hidden></p>
 
           <div class="field">
             <label for="register-name">Nome</label>
@@ -133,7 +137,10 @@
             <p class="field__error" id="register-password-error"></p>
           </div>
 
-          <button type="submit" class="btn btn--primary">Criar conta</button>
+          <button type="submit" class="btn btn--primary" data-loading-label="Criando conta…">
+            <span class="btn__spinner" aria-hidden="true"></span>
+            <span class="btn__label">Criar conta</span>
+          </button>
 
           <p class="switch">
             Já tem conta?

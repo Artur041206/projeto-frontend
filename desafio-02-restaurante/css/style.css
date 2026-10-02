@@ -6,6 +6,7 @@
   --ash: #a89a89;
   --cream: #f3e9d8;
   --smoke: #392c22;
+  --skeleton: #2a2119;
   --font-display: 'Fraunces', serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'Space Mono', monospace;
@@ -13,6 +14,10 @@
 
 * {
   box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 body {
@@ -34,7 +39,8 @@ a {
 }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible {
   outline: 2px solid var(--ember);
   outline-offset: 3px;
 }
@@ -63,6 +69,10 @@ button:focus-visible {
   padding-top: 0.9rem;
   padding-bottom: 0.9rem;
   transition: background 0.3s ease;
+}
+
+#mainNav.scrolled {
+  background: rgba(23, 19, 15, 0.97);
 }
 
 .navbar-brand {
@@ -159,6 +169,30 @@ button:focus-visible {
   color: var(--charcoal);
 }
 
+.btn-outline-brasa {
+  background: transparent;
+  color: var(--ember);
+  border: 1px solid var(--ember);
+  border-radius: 2px;
+  padding: 0.7rem 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-outline-brasa:hover:not(:disabled) {
+  background: var(--ember);
+  color: var(--charcoal);
+}
+
+.btn-outline-brasa:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
 .menu-section {
   padding: 6rem 0;
   background: var(--charcoal);
@@ -168,11 +202,19 @@ button:focus-visible {
   margin-bottom: 2.5rem;
 }
 
+.menu-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
 .filter-tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-bottom: 3rem;
 }
 
 .filter-btn {
@@ -200,8 +242,30 @@ button:focus-visible {
   font-weight: 700;
 }
 
+.search-box input {
+  width: min(100%, 280px);
+  background: var(--charcoal-2);
+  color: var(--cream);
+  border: 1px solid var(--smoke);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.search-box input::placeholder {
+  color: var(--ash);
+}
+
+.search-box input:focus {
+  border-color: var(--ember);
+}
+
 .ticket-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--charcoal-2);
   border: 1px solid var(--smoke);
   border-radius: 6px;
@@ -230,6 +294,7 @@ button:focus-visible {
 }
 
 .ticket-tag {
+  align-self: flex-start;
   display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -251,27 +316,128 @@ button:focus-visible {
 }
 
 .ticket-desc {
+  flex: 1;
   color: var(--ash);
   font-size: 0.9rem;
   margin-bottom: 1.25rem;
   min-height: 2.7em;
 }
 
-.ticket-price {
-  display: block;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--cream);
+.ticket-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   border-top: 1px dashed var(--smoke);
   padding-top: 0.9rem;
 }
 
-.empty-state {
+.ticket-price {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--cream);
+}
+
+.ticket-more {
+  background: none;
+  border: none;
+  padding: 0.25rem 0;
+  color: var(--ember);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.ticket-more:hover {
+  color: var(--cream);
+}
+
+.skeleton-card {
+  pointer-events: none;
+}
+
+.skeleton-line {
+  display: block;
+  height: 12px;
+  margin-bottom: 0.8rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--skeleton) 25%, var(--smoke) 50%, var(--skeleton) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+.skeleton-line--tag {
+  width: 30%;
+  height: 18px;
+  border-radius: 999px;
+  margin-bottom: 1.2rem;
+}
+
+.skeleton-line--title {
+  width: 70%;
+  height: 22px;
+}
+
+.skeleton-line--short {
+  width: 50%;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.state-box {
   text-align: center;
   color: var(--ash);
   font-family: var(--font-mono);
   padding: 2rem 0;
+}
+
+.state-box p {
+  margin-bottom: 1.25rem;
+}
+
+.load-more-wrap {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.detail-modal {
+  background: var(--charcoal-2);
+  color: var(--cream);
+  border: 1px solid var(--smoke);
+  border-radius: 6px;
+}
+
+.detail-modal .modal-header {
+  border-bottom: 1px dashed var(--smoke);
+}
+
+.detail-modal .modal-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.detail-desc {
+  color: var(--ash);
+}
+
+.detail-price {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .about-section {
@@ -358,6 +524,10 @@ button:focus-visible {
     transform: none;
     transition: none;
   }
+
+  .skeleton-line {
+    animation: none;
+  }
 }
 
 @media (max-width: 991.98px) {
@@ -367,9 +537,21 @@ button:focus-visible {
     padding: 1rem 1.25rem;
     margin-top: 0.75rem;
   }
+
   .btn-reserva {
     display: inline-block;
     margin-top: 0.5rem;
     margin-left: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .menu-section {
+    padding: 4rem 0;
+  }
+
+  .search-box,
+  .search-box input {
+    width: 100%;
   }
 }

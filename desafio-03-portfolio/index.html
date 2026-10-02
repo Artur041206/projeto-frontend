@@ -11,59 +11,83 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script>
+      (function () {
+        let temaSalvo = null;
+        try {
+          temaSalvo = localStorage.getItem('tema');
+        } catch {
+          temaSalvo = null;
+        }
+        if (temaSalvo === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    <script src="js/simulacao.js" defer></script>
+    <script src="js/script.js" defer></script>
   </head>
   <body>
-    <script>
-      if (localStorage.getItem('tema') === 'dark') {
-        document.body.classList.add('dark');
-      }
-    </script>
-
     <header class="site-header" id="topo">
       <div class="container header-inner">
         <a href="#topo" class="logo">Artur<span class="logo-dot">.</span>dev</a>
 
-        <nav class="main-nav">
+        <nav class="main-nav" id="mainNav" aria-label="Principal">
           <a href="#sobre">Sobre</a>
           <a href="#projetos">Projetos</a>
           <a href="#habilidades">Habilidades</a>
           <a href="#contato">Contato</a>
         </nav>
 
-        <button
-          id="themeToggle"
-          class="theme-toggle"
-          type="button"
-          aria-pressed="false"
-          aria-label="Alternar para tema escuro"
-        >
-          <svg
-            class="icon-sun"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
+        <div class="header-actions">
+          <button
+            id="themeToggle"
+            class="theme-toggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="Tema escuro"
           >
-            <circle cx="12" cy="12" r="4"></circle>
-            <path
-              d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
-            ></path></svg
-          ><svg
-            class="icon-moon"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
+            <svg
+              class="icon-sun"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path
+                d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+              ></path></svg
+            ><svg
+              class="icon-moon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M21 12.6A9 9 0 1 1 11.4 3a7 7 0 0 0 9.6 9.6z"></path>
+            </svg>
+          </button>
+
+          <button
+            id="menuToggle"
+            class="menu-toggle"
+            type="button"
+            aria-controls="mainNav"
+            aria-expanded="false"
+            aria-label="Abrir menu"
           >
-            <path d="M21 12.6A9 9 0 1 1 11.4 3a7 7 0 0 0 9.6 9.6z"></path>
-          </svg>
-        </button>
+            <span class="menu-toggle__bar"></span>
+            <span class="menu-toggle__bar"></span>
+            <span class="menu-toggle__bar"></span>
+          </button>
+        </div>
       </div>
     </header>
     <main>
@@ -98,13 +122,13 @@
               <div class="mockup mockup-login" aria-hidden="true">
                 <div class="mockup-bar"><span></span><span></span><span></span></div>
                 <div class="mockup-body">
-                  <div class="mockup-panel"></div>
                   <div class="mockup-form">
-                    <div class="mockup-line short"></div>
+                    <div class="mockup-line"></div>
                     <div class="mockup-field"></div>
                     <div class="mockup-field"></div>
                     <div class="mockup-btn"></div>
                   </div>
+                  <div class="mockup-panel"></div>
                 </div>
               </div>
               <div class="project-info">
@@ -172,9 +196,72 @@
           </div>
         </div>
       </section>
+
+      <section class="contact-section" id="contato">
+        <div class="container">
+          <p class="eyebrow">Contato</p>
+          <h2 class="section-title">Mande uma mensagem</h2>
+          <p class="section-sub">Respondo pelo e-mail que você informar.</p>
+
+          <form class="contact-form" id="contactForm" novalidate>
+            <p class="form-message" role="alert" hidden></p>
+
+            <div class="field">
+              <label for="contact-name">Nome</label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                aria-describedby="contact-name-error"
+              />
+              <p class="field-error" id="contact-name-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="contact-email">E-mail</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                aria-describedby="contact-email-error"
+              />
+              <p class="field-error" id="contact-email-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="contact-message">Mensagem</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="5"
+                aria-describedby="contact-message-error"
+              ></textarea>
+              <p class="field-error" id="contact-message-error"></p>
+            </div>
+
+            <div class="field-trap" aria-hidden="true">
+              <label for="contact-website">Website</label>
+              <input
+                id="contact-website"
+                name="website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <button type="submit" class="btn-primary btn-submit" data-loading-label="Enviando…">
+              <span class="btn-spinner" aria-hidden="true"></span>
+              <span class="btn-label">Enviar mensagem</span>
+            </button>
+          </form>
+        </div>
+      </section>
     </main>
 
-    <footer class="site-footer" id="contato">
+    <footer class="site-footer">
       <div class="container footer-inner">
         <div>
           <h2 class="footer-title">Vamos conversar?</h2>
@@ -190,7 +277,5 @@
       </div>
       <p class="footer-copy">&copy; 2026 Artur Vinicius. Todos os direitos reservados.</p>
     </footer>
-
-    <script src="js/script.js"></script>
   </body>
 </html>
